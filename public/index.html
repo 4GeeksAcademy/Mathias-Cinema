@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎬 Cinema Seat Manager - Sistema de Reserva de Asientos</title>
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <div class="contenedor-principal">
+        <!-- HEADER -->
+        <header class="header">
+            <div class="header-contenido">
+                <h1>🎬 CINEMA SEAT MANAGER</h1>
+                <p>Sistema de Reserva de Asientos - Cine Independiente</p>
+            </div>
+        </header>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- SIDEBAR - INFORMACIÓN Y CONTROLES -->
+            <aside class="sidebar">
+                <!-- ESTADÍSTICAS -->
+                <section class="panel estadisticas">
+                    <h3>📊 Estadísticas</h3>
+                    <div class="stat-item">
+                        <label>Capacidad Total:</label>
+                        <span id="capacidad" class="stat-value">80</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Disponibles:</label>
+                        <span id="disponibles" class="stat-value disponibles-color">80</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Reservados:</label>
+                        <span id="reservados" class="stat-value reservados-color">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <label>Ocupados:</label>
+                        <span id="ocupados" class="stat-value ocupados-color">0</span>
+                    </div>
+
+                    <!-- BARRA DE OCUPACIÓN -->
+                    <div class="barra-contenedor">
+                        <label>Ocupación:</label>
+                        <div class="barra-ocupacion">
+                            <div id="barra-llena" class="barra-llena" style="width: 0%"></div>
+                        </div>
+                        <span id="porcentaje" class="porcentaje-texto">0%</span>
+                    </div>
+                </section>
+
+                <!-- LEYENDA -->
+                <section class="panel leyenda">
+                    <h3>📋 Leyenda</h3>
+                    <div class="leyenda-item">
+                        <div class="asiento-mini disponible"></div>
+                        <span>Disponible</span>
+                    </div>
+                    <div class="leyenda-item">
+                        <div class="asiento-mini reservado"></div>
+                        <span>Reservado</span>
+                    </div>
+                    <div class="leyenda-item">
+                        <div class="asiento-mini ocupado"></div>
+                        <span>Ocupado</span>
+                    </div>
+                </section>
+
+                <!-- OPCIONES DE RESERVA -->
+                <section class="panel reserva">
+                    <h3>🎟️ Nueva Reserva</h3>
+                    
+                    <div class="tipo-reserva">
+                        <button class="btn-reserva btn-primario activo" data-tipo="individual">
+                            Individual (1)
+                        </button>
+                        <button class="btn-reserva btn-primario" data-tipo="pareja">
+                            Pareja (2)
+                        </button>
+                        <button class="btn-reserva btn-primario" data-tipo="grupo">
+                            Grupo (n)
+                        </button>
+                    </div>
+
+                    <!-- FORMULARIO -->
+                    <form id="formulario-cliente" class="formulario">
+                        <div class="form-grupo">
+                            <label for="nombre">Nombre:</label>
+                            <input type="text" id="nombre" placeholder="Juan García" required>
+                        </div>
+                        
+                        <div class="form-grupo">
+                            <label for="telefono">Teléfono:</label>
+                            <input type="tel" id="telefono" placeholder="555-1234" required>
+                        </div>
+
+                        <div class="form-grupo">
+                            <label for="correo">Correo (opcional):</label>
+                            <input type="email" id="correo" placeholder="juan@example.com">
+                        </div>
+
+                        <div id="contenedor-cantidad" class="form-grupo" style="display: none;">
+                            <label for="cantidad">Cantidad:</label>
+                            <input type="number" id="cantidad" min="1" max="10" value="3">
+                        </div>
+
+                        <button type="submit" class="btn-reserva btn-exito">
+                            Reservar
+                        </button>
+                    </form>
+                </section>
+
+                <!-- HISTORIAL DE RESERVAS -->
+                <section class="panel historial">
+                    <h3>📝 Mis Reservas</h3>
+                    <div id="lista-reservas" class="lista-reservas">
+                        <p class="vacio">No hay reservas</p>
+                    </div>
+                </section>
+            </aside>
+
+            <!-- CENTER - GRILLA DE ASIENTOS -->
+            <div class="centro">
+                <!-- PANTALLA -->
+                <div class="pantalla">SCREEN</div>
+
+                <!-- GRILLA -->
+                <div class="grilla-contenedor">
+                    <div class="grilla-header">
+                        <div class="grilla-filas-header"></div>
+                        <div class="grilla-columnas-header">
+                            <div class="col-header" style="grid-column: 1/12">
+                                <span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grilla-body">
+                        <!-- Las filas se generarán con JavaScript -->
+                        <div id="sala-grilla" class="sala-grilla"></div>
+                    </div>
+                </div>
+
+                <!-- INFORMACIÓN SELECCIÓN -->
+                <div class="info-seleccion">
+                    <span id="asientos-seleccionados">Selecciona asientos</span>
+                </div>
+            </div>
+        </main>
+
+        <!-- MODAL PARA CONFIRMACIÓN -->
+        <div id="modal-confirmacion" class="modal">
+            <div class="modal-contenido">
+                <h2>Confirmación de Reserva</h2>
+                <div id="modal-detalles"></div>
+                <div class="modal-botones">
+                    <button id="btn-confirmar" class="btn-reserva btn-exito">Confirmar</button>
+                    <button id="btn-cancelar-modal" class="btn-reserva btn-neutral">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

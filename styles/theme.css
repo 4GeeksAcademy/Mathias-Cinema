@@ -1,0 +1,397 @@
+/* 
+  ESTILOS Y CONVENCIONES VISUALES
+  ================================
+  
+  Aunque esta es una aplicación CLI, documentamos los estilos
+  y convenciones visuales para futura migración a web
+  
+  Variables de color y tema para terminal y web
+*/
+
+:root {
+  /* Colores Primarios */
+  --color-cine-rojo: #8B0000;
+  --color-cine-oro: #FFD700;
+  --color-cine-negro: #1a1a1a;
+  
+  /* Colores Funcionales */
+  --color-disponible: #4CAF50; /* Verde */
+  --color-reservado: #FF9800; /* Naranja */
+  --color-ocupado: #F44336; /* Rojo */
+  --color-confirmado: #2196F3; /* Azul */
+  
+  /* Colores Neutrales */
+  --color-fondo: #f5f5f5;
+  --color-fondo-oscuro: #2a2a2a;
+  --color-texto-principal: #212121;
+  --color-texto-secundario: #757575;
+  --color-borde: #e0e0e0;
+  
+  /* Tamaños de Fuente */
+  --font-size-titulo: 28px;
+  --font-size-subtitulo: 20px;
+  --font-size-normal: 14px;
+  --font-size-pequeño: 12px;
+  
+  /* Espaciado */
+  --espaciado-xs: 4px;
+  --espaciado-sm: 8px;
+  --espaciado-md: 16px;
+  --espaciado-lg: 24px;
+  --espaciado-xl: 32px;
+  
+  /* Sombras */
+  --sombra-leve: 0 1px 3px rgba(0, 0, 0, 0.12);
+  --sombra-media: 0 4px 6px rgba(0, 0, 0, 0.16);
+  --sombra-fuerte: 0 8px 12px rgba(0, 0, 0, 0.20);
+  
+  /* Transiciones */
+  --transicion-rapida: 0.2s ease-in-out;
+  --transicion-normal: 0.3s ease-in-out;
+  --transicion-lenta: 0.5s ease-in-out;
+  
+  /* Bordes */
+  --border-radius-pequeño: 4px;
+  --border-radius-medio: 8px;
+  --border-radius-grande: 12px;
+}
+
+/* ============================================
+   TEMA OSCURO (Para Terminal)
+   ============================================ */
+
+body.tema-terminal {
+  background-color: var(--color-fondo-oscuro);
+  color: var(--color-texto-principal);
+  font-family: 'Courier New', monospace;
+}
+
+/* Asientos en Terminal */
+.asiento-disponible-terminal {
+  color: var(--color-disponible);
+  font-weight: bold;
+}
+
+.asiento-reservado-terminal {
+  color: var(--color-reservado);
+  font-weight: bold;
+}
+
+.asiento-ocupado-terminal {
+  color: var(--color-ocupado);
+  font-weight: bold;
+}
+
+/* ============================================
+   COMPONENTES WEB (Futura Migración)
+   ============================================ */
+
+/* Grilla de Asientos */
+.sala-grilla {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-lg);
+  background-color: var(--color-fondo);
+  border-radius: var(--border-radius-medio);
+  box-shadow: var(--sombra-media);
+}
+
+/* Asiento Individual */
+.asiento {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-pequeño);
+  border: 2px solid var(--color-borde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  font-weight: bold;
+  font-size: 12px;
+}
+
+/* Estados del Asiento */
+.asiento.disponible {
+  background-color: var(--color-disponible);
+  color: white;
+  border-color: var(--color-disponible);
+}
+
+.asiento.disponible:hover {
+  transform: scale(1.1);
+  box-shadow: var(--sombra-media);
+}
+
+.asiento.reservado {
+  background-color: var(--color-reservado);
+  color: white;
+  border-color: var(--color-reservado);
+  cursor: not-allowed;
+}
+
+.asiento.ocupado {
+  background-color: var(--color-ocupado);
+  color: white;
+  border-color: var(--color-ocupado);
+  cursor: not-allowed;
+}
+
+.asiento.confirmado {
+  background-color: var(--color-confirmado);
+  color: white;
+  border-color: var(--color-confirmado);
+}
+
+/* Tarjeta de Información */
+.tarjeta-informacion {
+  background-color: white;
+  border-radius: var(--border-radius-medio);
+  padding: var(--espaciado-lg);
+  box-shadow: var(--sombra-media);
+  margin-bottom: var(--espaciado-md);
+  border-left: 4px solid var(--color-cine-rojo);
+}
+
+.tarjeta-informacion.exito {
+  border-left-color: var(--color-disponible);
+}
+
+.tarjeta-informacion.error {
+  border-left-color: var(--color-ocupado);
+}
+
+.tarjeta-informacion.advertencia {
+  border-left-color: var(--color-reservado);
+}
+
+/* Estadísticas */
+.estadisticas {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: var(--espaciado-md);
+  padding: var(--espaciado-lg);
+  background: linear-gradient(135deg, var(--color-cine-negro), #2a2a2a);
+  color: white;
+  border-radius: var(--border-radius-medio);
+}
+
+.estadistica-item {
+  text-align: center;
+  padding: var(--espaciado-md);
+}
+
+.estadistica-valor {
+  font-size: var(--font-size-titulo);
+  font-weight: bold;
+  color: var(--color-cine-oro);
+}
+
+.estadistica-etiqueta {
+  font-size: var(--font-size-pequeño);
+  color: rgba(255, 255, 255, 0.7);
+  margin-top: var(--espaciado-sm);
+}
+
+/* Botones */
+.boton {
+  padding: var(--espaciado-sm) var(--espaciado-md);
+  border: none;
+  border-radius: var(--border-radius-pequeño);
+  font-size: var(--font-size-normal);
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  font-weight: bold;
+}
+
+.boton-primario {
+  background-color: var(--color-cine-rojo);
+  color: white;
+}
+
+.boton-primario:hover {
+  background-color: #a60000;
+  box-shadow: var(--sombra-media);
+  transform: translateY(-2px);
+}
+
+.boton-secundario {
+  background-color: var(--color-cine-oro);
+  color: var(--color-cine-negro);
+}
+
+.boton-secundario:hover {
+  background-color: #ffed4e;
+  box-shadow: var(--sombra-media);
+}
+
+.boton-deshabilitado {
+  background-color: var(--color-texto-secundario);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Barra de Progreso */
+.barra-ocupacion {
+  width: 100%;
+  height: 20px;
+  background-color: var(--color-borde);
+  border-radius: var(--border-radius-pequeño);
+  overflow: hidden;
+  margin: var(--espaciado-md) 0;
+}
+
+.barra-ocupacion-llena {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--color-disponible),
+    var(--color-reservado),
+    var(--color-ocupado)
+  );
+  transition: width var(--transicion-normal);
+}
+
+/* Menú */
+.menu-principal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaciado-sm);
+  padding: var(--espaciado-lg);
+  background-color: white;
+  border-radius: var(--border-radius-medio);
+  box-shadow: var(--sombra-media);
+}
+
+.menu-item {
+  padding: var(--espaciado-md);
+  border: 2px solid var(--color-borde);
+  border-radius: var(--border-radius-pequeño);
+  cursor: pointer;
+  transition: all var(--transicion-rapida);
+  text-align: left;
+}
+
+.menu-item:hover {
+  border-color: var(--color-cine-rojo);
+  background-color: rgba(139, 0, 0, 0.05);
+  transform: translateX(4px);
+}
+
+/* Modal/Formulario */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-contenido {
+  background-color: white;
+  padding: var(--espaciado-xl);
+  border-radius: var(--border-radius-medio);
+  box-shadow: var(--sombra-fuerte);
+  max-width: 500px;
+  width: 90%;
+  animation: slideUp var(--transicion-normal);
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .sala-grilla {
+    grid-template-columns: repeat(8, 1fr);
+    gap: var(--espaciado-sm);
+    padding: var(--espaciado-md);
+  }
+
+  .asiento {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .estadisticas {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .sala-grilla {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .asiento {
+    width: 25px;
+    height: 25px;
+    font-size: 8px;
+  }
+
+  .estadisticas {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-contenido {
+    width: 95%;
+  }
+}
+
+/* Tema Claro */
+@media (prefers-color-scheme: light) {
+  body {
+    background-color: var(--color-fondo);
+    color: var(--color-texto-principal);
+  }
+}
+
+/* Tema Oscuro */
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--color-fondo-oscuro);
+    color: white;
+  }
+
+  .tarjeta-informacion,
+  .modal-contenido {
+    background-color: #333;
+    color: white;
+  }
+}
+
+/* Accesibilidad */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Contraste Elevado */
+@media (prefers-contrast: more) {
+  .asiento {
+    border-width: 3px;
+    font-weight: bold;
+  }
+
+  .boton {
+    border: 2px solid currentColor;
+  }
+}

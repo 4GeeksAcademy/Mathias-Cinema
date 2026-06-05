@@ -1,0 +1,751 @@
+/* ===================================
+   ESTILOS GENERALES
+   =================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --color-cine-rojo: #8B0000;
+    --color-cine-oro: #FFD700;
+    --color-cine-negro: #1a1a1a;
+    --color-disponible: #4CAF50;
+    --color-reservado: #FF9800;
+    --color-ocupado: #F44336;
+    --color-fondo: #f5f5f5;
+    --color-texto: #212121;
+    --color-borde: #e0e0e0;
+    --color-overlay: rgba(0, 0, 0, 0.5);
+    
+    --espaciado-xs: 4px;
+    --espaciado-sm: 8px;
+    --espaciado-md: 16px;
+    --espaciado-lg: 24px;
+    --espaciado-xl: 32px;
+    
+    --sombra-leve: 0 1px 3px rgba(0, 0, 0, 0.12);
+    --sombra-media: 0 4px 6px rgba(0, 0, 0, 0.16);
+    --sombra-fuerte: 0 8px 12px rgba(0, 0, 0, 0.20);
+    
+    --transicion: 0.3s ease-in-out;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+}
+
+/* ===================================
+   HEADER
+   =================================== */
+
+.header {
+    background: linear-gradient(135deg, var(--color-cine-negro) 0%, var(--color-cine-rojo) 100%);
+    color: white;
+    padding: var(--espaciado-xl) var(--espaciado-lg);
+    box-shadow: var(--sombra-media);
+    text-align: center;
+}
+
+.header-contenido h1 {
+    font-size: 2.5rem;
+    margin-bottom: var(--espaciado-sm);
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.header-contenido p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* ===================================
+   LAYOUT PRINCIPAL
+   =================================== */
+
+.contenedor-principal {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 350px 1fr;
+    gap: var(--espaciado-lg);
+    padding: var(--espaciado-lg);
+    flex: 1;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-lg);
+}
+
+.centro {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-lg);
+    align-items: center;
+}
+
+/* ===================================
+   PANELES
+   =================================== */
+
+.panel {
+    background: white;
+    border-radius: 12px;
+    padding: var(--espaciado-lg);
+    box-shadow: var(--sombra-media);
+    border: 1px solid var(--color-borde);
+}
+
+.panel h3 {
+    margin-bottom: var(--espaciado-md);
+    color: var(--color-cine-rojo);
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--color-cine-oro);
+    padding-bottom: var(--espaciado-sm);
+}
+
+/* ===================================
+   ESTADÍSTICAS
+   =================================== */
+
+.estadisticas {
+    min-height: auto;
+}
+
+.stat-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--espaciado-sm) 0;
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.stat-item label {
+    font-weight: 600;
+    color: var(--color-texto);
+}
+
+.stat-value {
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: var(--espaciado-xs) var(--espaciado-sm);
+    border-radius: 6px;
+    background-color: #f0f0f0;
+    min-width: 50px;
+    text-align: center;
+}
+
+.stat-value.disponibles-color {
+    color: var(--color-disponible);
+}
+
+.stat-value.reservados-color {
+    color: var(--color-reservado);
+}
+
+.stat-value.ocupados-color {
+    color: var(--color-ocupado);
+}
+
+.barra-contenedor {
+    margin-top: var(--espaciado-md);
+    padding-top: var(--espaciado-md);
+    border-top: 2px solid var(--color-borde);
+}
+
+.barra-contenedor label {
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--espaciado-sm);
+}
+
+.barra-ocupacion {
+    height: 24px;
+    background-color: var(--color-borde);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: var(--espaciado-sm);
+}
+
+.barra-llena {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-disponible), var(--color-reservado), var(--color-ocupado));
+    border-radius: 12px;
+    transition: width var(--transicion);
+}
+
+.porcentaje-texto {
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--color-cine-rojo);
+}
+
+/* ===================================
+   LEYENDA
+   =================================== */
+
+.leyenda-item {
+    display: flex;
+    align-items: center;
+    gap: var(--espaciado-md);
+    padding: var(--espaciado-sm) 0;
+}
+
+.asiento-mini {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    border: 2px solid var(--color-borde);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.asiento-mini.disponible {
+    background-color: var(--color-disponible);
+    color: white;
+    border-color: var(--color-disponible);
+}
+
+.asiento-mini.reservado {
+    background-color: var(--color-reservado);
+    color: white;
+    border-color: var(--color-reservado);
+}
+
+.asiento-mini.ocupado {
+    background-color: var(--color-ocupado);
+    color: white;
+    border-color: var(--color-ocupado);
+}
+
+/* ===================================
+   FORMULARIO DE RESERVA
+   =================================== */
+
+.reserva {
+    padding: var(--espaciado-md);
+}
+
+.tipo-reserva {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: var(--espaciado-sm);
+    margin-bottom: var(--espaciado-md);
+}
+
+.btn-reserva {
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all var(--transicion);
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.btn-primario {
+    background-color: #e0e0e0;
+    color: var(--color-texto);
+    border: 2px solid transparent;
+}
+
+.btn-primario:hover {
+    background-color: #d0d0d0;
+}
+
+.btn-primario.activo {
+    background-color: var(--color-cine-rojo);
+    color: white;
+    border-color: var(--color-cine-oro);
+}
+
+.btn-exito {
+    width: 100%;
+    background-color: var(--color-disponible);
+    color: white;
+}
+
+.btn-exito:hover {
+    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: var(--sombra-media);
+}
+
+.btn-neutral {
+    background-color: #999;
+    color: white;
+}
+
+.btn-neutral:hover {
+    background-color: #777;
+}
+
+.formulario {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-sm);
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-grupo label {
+    font-weight: 600;
+    margin-bottom: var(--espaciado-xs);
+    color: var(--color-texto);
+}
+
+.form-grupo input {
+    padding: var(--espaciado-sm) var(--espaciado-md);
+    border: 2px solid var(--color-borde);
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color var(--transicion);
+}
+
+.form-grupo input:focus {
+    outline: none;
+    border-color: var(--color-cine-rojo);
+    box-shadow: 0 0 0 3px rgba(139, 0, 0, 0.1);
+}
+
+/* ===================================
+   HISTORIAL DE RESERVAS
+   =================================== */
+
+.lista-reservas {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-sm);
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.reserva-item {
+    background-color: #f9f9f9;
+    padding: var(--espaciado-md);
+    border-left: 4px solid var(--color-cine-rojo);
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+.reserva-item-id {
+    font-weight: bold;
+    color: var(--color-cine-rojo);
+}
+
+.reserva-item-cliente {
+    color: var(--color-texto);
+    margin-top: var(--espaciado-xs);
+}
+
+.reserva-item-estado {
+    font-size: 0.8rem;
+    margin-top: var(--espaciado-xs);
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.reserva-item-estado.pendiente {
+    color: var(--color-reservado);
+}
+
+.reserva-item-estado.confirmada {
+    color: var(--color-disponible);
+}
+
+.vacio {
+    text-align: center;
+    color: #999;
+    padding: var(--espaciado-md);
+}
+
+/* ===================================
+   PANTALLA
+   =================================== */
+
+.pantalla {
+    width: 100%;
+    max-width: 600px;
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    background-color: #c0c0c0;
+    color: #666;
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* ===================================
+   GRILLA DE ASIENTOS
+   =================================== */
+
+.grilla-contenedor {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaciado-md);
+    padding: var(--espaciado-lg);
+    background: white;
+    border-radius: 12px;
+    box-shadow: var(--sombra-media);
+}
+
+.grilla-header {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--espaciado-md);
+}
+
+.grilla-filas-header {
+    width: 40px;
+}
+
+.grilla-columnas-header {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+.col-header {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: var(--espaciado-sm);
+    text-align: center;
+    font-weight: bold;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.col-header span {
+    padding: var(--espaciado-sm);
+}
+
+.grilla-body {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: var(--espaciado-md);
+    align-items: start;
+}
+
+.sala-grilla {
+    display: grid;
+    gap: var(--espaciado-md);
+}
+
+.fila-asientos {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: var(--espaciado-sm);
+}
+
+.fila-numero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+    font-size: 0.9rem;
+    width: 40px;
+}
+
+/* ===================================
+   ASIENTOS
+   =================================== */
+
+.asiento {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: 2px solid var(--color-borde);
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all var(--transicion);
+    background-color: white;
+    position: relative;
+}
+
+/* Estado: Disponible */
+.asiento.disponible {
+    background-color: var(--color-disponible);
+    color: white;
+    border-color: var(--color-disponible);
+    cursor: pointer;
+}
+
+.asiento.disponible:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.4);
+}
+
+.asiento.disponible.seleccionado {
+    background-color: var(--color-cine-oro);
+    border: 3px dashed var(--color-cine-rojo);
+    box-shadow: 0 0 0 2px var(--color-cine-rojo);
+    transform: scale(1.15);
+}
+
+/* Estado: Reservado */
+.asiento.reservado {
+    background-color: var(--color-reservado);
+    color: white;
+    border-color: var(--color-reservado);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+.asiento.reservado:hover {
+    opacity: 0.9;
+}
+
+/* Estado: Ocupado */
+.asiento.ocupado {
+    background-color: var(--color-ocupado);
+    color: white;
+    border-color: var(--color-ocupado);
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* Estado: Par adyacente (destaque) */
+.asiento.par-adyacente {
+    border: 3px dashed var(--color-cine-oro);
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 8px rgba(255, 215, 0, 0);
+    }
+}
+
+/* ===================================
+   INFORMACIÓN DE SELECCIÓN
+   =================================== */
+
+.info-seleccion {
+    padding: var(--espaciado-md) var(--espaciado-lg);
+    background-color: #f0f0f0;
+    border-radius: 8px;
+    text-align: center;
+    font-weight: 600;
+    color: var(--color-texto);
+    border: 2px solid var(--color-borde);
+}
+
+/* ===================================
+   MODAL
+   =================================== */
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-overlay);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal.activo {
+    display: flex;
+}
+
+.modal-contenido {
+    background: white;
+    padding: var(--espaciado-xl);
+    border-radius: 12px;
+    box-shadow: var(--sombra-fuerte);
+    max-width: 500px;
+    width: 90%;
+    animation: slideUp 0.3s ease-in-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-contenido h2 {
+    margin-bottom: var(--espaciado-lg);
+    color: var(--color-cine-rojo);
+    font-size: 1.5rem;
+}
+
+#modal-detalles {
+    background-color: #f9f9f9;
+    padding: var(--espaciado-lg);
+    border-radius: 8px;
+    margin-bottom: var(--espaciado-lg);
+    border-left: 4px solid var(--color-cine-rojo);
+}
+
+.modal-detalles-item {
+    margin-bottom: var(--espaciado-md);
+}
+
+.modal-detalles-label {
+    font-weight: bold;
+    color: var(--color-cine-rojo);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+}
+
+.modal-detalles-valor {
+    margin-top: var(--espaciado-xs);
+    color: var(--color-texto);
+    font-size: 1.1rem;
+}
+
+.modal-botones {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espaciado-md);
+}
+
+.modal-botones .btn-reserva {
+    padding: var(--espaciado-md);
+}
+
+/* ===================================
+   RESPONSIVE
+   =================================== */
+
+@media (max-width: 1024px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        order: 2;
+    }
+
+    .centro {
+        order: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-contenido h1 {
+        font-size: 1.8rem;
+    }
+
+    .main-content {
+        padding: var(--espaciado-md);
+        gap: var(--espaciado-md);
+    }
+
+    .tipo-reserva {
+        grid-template-columns: 1fr;
+    }
+
+    .fila-asientos {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .asiento {
+        font-size: 0.7rem;
+    }
+
+    .col-header {
+        grid-template-columns: repeat(8, 1fr);
+    }
+
+    .grilla-contenedor {
+        padding: var(--espaciado-md);
+    }
+}
+
+@media (max-width: 480px) {
+    .header-contenido h1 {
+        font-size: 1.5rem;
+    }
+
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .fila-asientos {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .col-header {
+        grid-template-columns: repeat(5, 1fr);
+        font-size: 0.7rem;
+    }
+
+    .col-header span {
+        padding: var(--espaciado-xs);
+    }
+
+    .asiento {
+        border-width: 1px;
+        font-size: 0.6rem;
+    }
+
+    .pantalla {
+        font-size: 1rem;
+        padding: var(--espaciado-md);
+    }
+}
+
+/* ===================================
+   SCROLLBAR PERSONALIZADA
+   =================================== */
+
+.lista-reservas::-webkit-scrollbar {
+    width: 8px;
+}
+
+.lista-reservas::-webkit-scrollbar-track {
+    background: var(--color-borde);
+    border-radius: 10px;
+}
+
+.lista-reservas::-webkit-scrollbar-thumb {
+    background: var(--color-cine-rojo);
+    border-radius: 10px;
+}
+
+.lista-reservas::-webkit-scrollbar-thumb:hover {
+    background: #600000;
+}
