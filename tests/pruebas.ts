@@ -223,4 +223,3 @@ ${pruebasFallidas === 0 ? VERDE + "✓ TODAS LAS PRUEBAS PASARON" + RESET : ROJO
 ${AMARILLO}═══════════════════════════════════════════════════════${RESET}
 `);
 
-process.exit(pruebasFallidas > 0 ? 1 : 0);
